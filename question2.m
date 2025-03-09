@@ -12,7 +12,7 @@ while potential_advocacy < 1 || potential_advocacy > 10
     potential_advocacy = input('If the opportunity arose, would you involve yourself with advocacy for climate change mitigation or adaptation? (1 = no I don’t really care, 10 = yes, absolutely): ');
 end
 
-responses(i) = advocacy;
+responses(i) = advocacy; %not working
 
 end
 
