@@ -16,5 +16,5 @@ responses(i) = advocacy;
 
 end
 
-save('question1.mlx', 'responses'); %saving for later calculations
+save('question2.m', 'responses'); %saving for later calculations
 
