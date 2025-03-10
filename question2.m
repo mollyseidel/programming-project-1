@@ -1,4 +1,4 @@
-num_participants = 5 %to be changed
+num_participants = 5; %to be changed
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses
 
@@ -14,7 +14,8 @@ end
 
 responses(i) = advocacy; %not working
 
+disp(responses)
 end
 
-save('question2.m', 'responses'); %saving for later calculations
+save('question2.m', 'responses'); %saving for later calculations - I'm not displaying them but I want to store them for later, like a column vector to later use maybe? 
 

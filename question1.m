@@ -1,4 +1,4 @@
-num_participants = 5 %to be changed
+num_participants = 5; %to be changed
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses
 
@@ -16,4 +16,4 @@ responses(i) = perceived_impact; %not working
 
 end
 
-save('question1.mlx', 'responses'); %saving for later calculations
+save('question1.m', 'responses'); %saving for later calculations
