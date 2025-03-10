@@ -18,3 +18,16 @@ grey = white/2;
 [window, windowRect] = PsychImaging ('OpenWindow', screenNumber, grey);
 KbStrokeWait;
 sca;
+
+%create frames for images to be displayed on
+numSecs = 5; %frame will be displayed for 5 seconds
+for frame = 1:30 %30 images
+    %this is where coding for images comes in
+
+    vbl = Screen ('Flip', window, vbl + numSecs - ifi/2);
+
+end
+Priority (0);
+sca;
+
+   
