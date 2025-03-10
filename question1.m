@@ -12,7 +12,7 @@ while climate_impact < 1 || climate_impact > 10
     climate_impact = input('If the opportunity arose, would you involve yourself with advocacy for climate change mitigation or adaptation? (1 = not at all, 10 = immediate threat): ');
 end
 
-responses(i) = advocacy; %not working
+responses(i) = impact; %not working
 
 disp(responses)
 end
