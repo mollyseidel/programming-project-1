@@ -14,7 +14,6 @@ end
 
 responses(i) = impact; %not working
 
-disp(responses)
 end
 
 save('question1.m', 'responses'); %saving for later calculations - I'm not displaying them but I want to store them for later, like a column vector to later use maybe? 
