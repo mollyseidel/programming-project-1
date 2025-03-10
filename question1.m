@@ -12,7 +12,7 @@ while perceived_impact < 1 || perceived_impact > 10
    perceived_impact = input('How directly do you feel climate change is impacting your life or livelihood? (1 = not at all, 10 = immediate threat): ');
 end
 
-responses(i) = perceived_impact; %not working
+responses(i) = perceived_impact; 
 end
 
 save('question1responses.mat', 'responses'); %saving for later calculations

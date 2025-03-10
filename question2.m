@@ -13,7 +13,7 @@ while potential_advocacy < 1 || potential_advocacy > 10
 
 end
 
-responses(i) = potential_advocacy; %not working
+responses(i) = potential_advocacy; 
 
 end
 
