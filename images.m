@@ -22,7 +22,7 @@ KbStrokeWait;
 [screenXpixels, screenYpixels] = Screen ('WindowSize', window);
 
 %coding for the image
-the_image = imread ('sloth.jpg')
+the_image = imread ('sloth.jpg') % Check that the image file (sloth.jpg) is in the current directory or provide the full path to the image file. Sometimes, an issue arises if the image file cannot be found, but no error is raised until you try to display it.
 
 [s1, s2, ~] = size(the_image);
 
