@@ -1,4 +1,4 @@
-num_participants = 5 %to be changed
+num_participants = 5; %to be changed
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses
 
@@ -10,11 +10,12 @@ potential_advocacy = input('If the opportunity arose, would you involve yourself
 while potential_advocacy < 1 || potential_advocacy > 10
     disp('Please enter a number between 1 and 10.');
     potential_advocacy = input('If the opportunity arose, would you involve yourself with advocacy for climate change mitigation or adaptation? (1 = no I don’t really care, 10 = yes, absolutely): ');
-end
-
-responses(i) = advocacy; %not working
 
 end
 
-save('question2.m', 'responses'); %saving for later calculations
+responses(i) = potential_advocacy; 
+
+end
+
+save('question2responses.mat', 'responses'); %saving for later calculations - I'm not displaying them but I want to store them for later, like a column vector to later use maybe? 
 

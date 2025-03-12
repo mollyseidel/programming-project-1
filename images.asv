@@ -1,0 +1,39 @@
+%images
+%clear all screens and figures as well as all variables in the workspace
+sca;
+close all;
+clear all;
+%call defauly settings for setting up Psychtoolbox
+PsychDefaultSetup(2);
+
+
+%establishing a screen with background grey
+screens = Screen ('Screens');
+
+screenNumber = max(screens);
+white = WhiteIndex (screenNumber);
+black = BlackIndex (screenNumber);
+grey = white/2;
+
+[window, windowRect] = PsychImaging ('OpenWindow', screenNumber, grey);
+KbStrokeWait;
+sca;
+
+%create frames for images to be displayed on
+numSecs = 5; %frame will be displayed for 5 seconds
+for frame = 1:30 %30 images
+    %this is where coding for images comes in
+    [screenXpixels, screenYpixels] = Screen (['WindowSize', window);
+
+    the_image = imread (sloth.jpg);
+    [s1, s2, ~] = size(the_image);
+
+    %check
+
+    vbl = Screen ('Flip', window, vbl + numSecs - ifi/2);
+
+end
+Priority (0);
+sca;
+
+   
