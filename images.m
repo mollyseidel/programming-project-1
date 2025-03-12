@@ -23,7 +23,7 @@ sca;
 numSecs = 5; %frame will be displayed for 5 seconds
 for the_image = 1:30 %30 images
     %this is where coding for images comes in
-    [screenXpixels, screenYpixels] = Screen (['WindowSize'], window);
+    [screenXpixels, screenYpixels] = Screen ('WindowSize', window);
 
     the_image = imread (sloth.jpg);
     [s1, s2, ~] = size(the_image);
