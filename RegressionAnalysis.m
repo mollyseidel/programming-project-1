@@ -16,3 +16,4 @@ mdl = fitlm(X,Y);
 
 disp('Linear regression model:');
 disp(mdl)
+
