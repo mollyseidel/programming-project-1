@@ -17,23 +17,29 @@ grey = white/2;
 
 [window, windowRect] = PsychImaging ('OpenWindow', screenNumber, grey);
 KbStrokeWait;
-sca;
+[screenXpixels, screenYpixels] = Screen ('WindowSize', window);
 
-%create frames for images to be displayed on
-numSecs = 5; %frame will be displayed for 5 seconds
-for frame = 1:30 %30 images
-    %this is where coding for images comes in
-    [screenXpixels, screenYpixels] = Screen (['WindowSize', window);
+%coding for the image
+the_image = imread ('sloth.jpg')
 
-    the_image = imread (sloth.jpg);
-    [s1, s2, ~] = size(the_image);
+[s1, s2, ~] = size(the_image);
 
-    %check
+    
 
-    vbl = Screen ('Flip', window, vbl + numSecs - ifi/2);
+    %check for if image is too big, error if so
+    if s1 > screenYpixels || s2 > screenXpixels
+        disp ('Image is bigger than the screen');
+        sca;
+        return;
+    end
+imageTexture = Screen ('MakeTexture', window, the_image); %actual display function
+Screen ('DrawTexture', window, imageTexture, [], [], 0);
+Priority(1);
 
-end
-Priority (0);
+vbl = Screen ('Flip', window);
+
+Priority(0);
+
 sca;
 
    
