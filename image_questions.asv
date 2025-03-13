@@ -1,0 +1,31 @@
+
+imageFolder = 'C:\Users\carli\OneDrive\Pictures\Pictures CLPS 950 Project 1'; % Change to your actual folder path
+imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all JPG files in the folder
+
+% Preallocate storage for ratings
+numimages = length(imageFiles);
+ratings = zeros(numimages, 1); % Store r
+
+questions = 30;
+store_responses = zeros(questions, 1);
+
+images = {'flood hurricane.png'};
+
+for i = 1:questions
+    question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 10 = you care):');
+    answer = input(['Rate image ', num2str(i), ' from 1 to 10: ']);
+    img = imread(images{i});
+    imshow(img);
+    title(['Image ', num2str(i), ' - Rate from 1 to 10']);  
+    pause(0.5);
+
+while (answer < 1) || (answer > 10)
+	disp('Invalid input')
+    answer = input(['Rate image ', num2str(i), ' from 1 to 10: ']);
+end
+	
+	store_responses(i) = answer;
+    close;
+end 
+
+save('imageresponses.mat', 'store_responses');
