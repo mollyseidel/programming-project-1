@@ -1,10 +1,3 @@
-j nnkcreen('Preference', 'SkipSyncTests', 1); % Skip sync tests for now
-[window, windowRect] = Screen('OpenWindow', 0, [255 255 255]); % Open white window
-screenX = windowRect(3);
-screenY = windowRect(4);
-textSize = 30;
-
-
 imageFolder = 'C:\Users\carli\OneDrive\Pictures\Pictures CLPS 950 Project 1'; % Change to your actual folder path
 imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all JPG files in the folder
 
