@@ -5,7 +5,7 @@ close all;
 clear all;
 %call defauly settings for setting up Psychtoolbox
 PsychDefaultSetup(2);
-
+screen('Preference','SkipSynchTest',1)
 
 %establishing a screen with background grey
 screens = Screen ('Screens');
