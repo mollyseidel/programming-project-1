@@ -1,4 +1,4 @@
-Screen('Preference', 'SkipSyncTests', 1); % Skip sync tests for now
+j nnkcreen('Preference', 'SkipSyncTests', 1); % Skip sync tests for now
 [window, windowRect] = Screen('OpenWindow', 0, [255 255 255]); % Open white window
 screenX = windowRect(3);
 screenY = windowRect(4);

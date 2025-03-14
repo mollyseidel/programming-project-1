@@ -1,4 +1,4 @@
-
+&
 imageFolder = 'C:\Users\carli\OneDrive\Pictures\Pictures CLPS 950 Project 1'; % Change to your actual folder path
 imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all JPG files in the folder
 
