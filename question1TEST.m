@@ -1,8 +1,6 @@
 
 subid= 1254; %change for each participant
 num_participants = 2;
-%function i = question1TEST(num_participants)
-%function i = question1TEST(num_participants)
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses
 
@@ -15,7 +13,7 @@ textColor = [255 255 255];  % White text
 KbName('UnifyKeyNames');  % Standardize key names
 
 questionTexts = {'How directly do you feel climate change is impacting your life or livelihood? (1 = not at all, 10 = immediate threat):',
-    'If the opportunity arose, would you involve yourself with advocacy for climate change mitigation or adaptation? (1 = no I don’t really care, 10 = yes, absolutely)'};
+   'If the opportunity arose, would you involve yourself with advocacy for climate change mitigation or adaptation? (1 = no I don’t really care, 10 = yes, absolutely)'};
 
 for i = 1:num_participants
     % Show the question and get the rating
@@ -55,25 +53,27 @@ for i = 1:num_participants
                         break;  % Valid rating, exit loop
                     end
                 end 
+
             end
         end
     end
 
-    % Store the response - does this do the same thing as line 64?
     responses(i) = str2double(keypr(1)); 
 
     % Display a confirmation message for the response
     DrawFormattedText(window1, ['You rated: ' keypr(1)], 'center', rect(4)/2 + 100, textColor);
+    responses(i) = rating; 
+
     Screen('Flip', window1);  % Update the screen
     WaitSecs(1);  % Wait for 1 second before moving to the next participant
 end
 
-% Save the responses to a .mat file
+% Save the responses 
+
     filename = ['results/question1responses' num2str(subid)] ;
 save(filename, 'responses');
 
 % Close the screen
 Screen('CloseAll');
-%end
 
-
+%gotta figure out again how to store without NaN
