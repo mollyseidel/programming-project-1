@@ -1,5 +1,5 @@
 
-subid= 1254; %change for each participant
+subid= 1256; %change for each participant
 num_participants = 2;
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses
@@ -77,3 +77,5 @@ save(filename, 'responses');
 Screen('CloseAll');
 
 %gotta figure out again how to store without NaN
+%remember how to call from command
+%I want to store responses to the first and second questions separately 
