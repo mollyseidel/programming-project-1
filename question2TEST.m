@@ -74,5 +74,5 @@ save(filename, 'responses');
 % Close the screen
 Screen('CloseAll');
 
-%this code does the same thing as question1TEST but it actually stores the
-%data better on my computer, its more complicated though 
+%this code stores the two questions together, the two new ones store them
+%separately, which one is best for the regression?
