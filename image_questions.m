@@ -1,4 +1,5 @@
 sca;
+KbName('UnifyKeyNames');
 Screen('Preference', 'SkipSyncTests', 1);
 [window, screenRect] = Screen('OpenWindow', 0, [255, 255, 255], [], 32, 2); % Open a white window
 screenX = screenRect(3);
