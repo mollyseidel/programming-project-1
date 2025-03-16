@@ -1,10 +1,11 @@
 %making the regression
 filenames = dir(fullfile('results', '*.mat'));
 responsesall=[];
+
 for i = 1:length(filenames)
     disp(filenames(i))
     fn=fullfile('results', filenames(i).name);
-    r=load(fn)
+    r=load(fn);
     responsesall = [responsesall r];
 end
 
@@ -46,3 +47,5 @@ if acceptHypothesis
 else
     disp('People who perceive themselves to be more directly impacted by climate change and experience higher emotional distress because of climate change impacts are not more likely to support mitigation efforts');
 end
+
+
