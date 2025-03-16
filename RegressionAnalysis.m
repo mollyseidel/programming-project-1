@@ -1,12 +1,13 @@
 %making the regression
-load("question2responses.mat");
-disp(responses)
+filenames = dir(fullfile('results', '*.mat'));
+responsesall=[];
+for i = 1:length(filenames)
+    disp(filenames(i))
+    fn=fullfile('results', filenames(i).name);
+    r=load(fn)
+    responsesall = [responsesall r];
+end
 
-load("question1responses.mat");
-disp(responses)
-
-load("imagesresponses.mat")
-disp(responses)
 
 X = ["imagesresponses.mat","question1responses.mat", ]; %change when images get set
 

@@ -6,7 +6,7 @@ screenX = screenRect(3);
 screenY = screenRect(4);
 
 
-imageFolder = 'C:\Users\carli\OneDrive\Pictures\Pictures CLPS 950 Project 1'; % folder path
+imageFolder = 'Images'; % folder path
 imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all png files in the folder
 
 % Store the responses
@@ -45,6 +45,7 @@ while ~responsegood
 
                 Screen('CloseAll');  % Close all Psychtoolbox windows
                 clear;
+                sca
                 return; % Exit the script completely
             end
             

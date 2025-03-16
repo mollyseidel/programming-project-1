@@ -1,12 +1,11 @@
 %making the regression
-load("question2responses.mat");
-disp(responses)
+filenames = dir(fullfile('results', '*.mat'));
+responsesall=[];
+for i = 1:length(filenames)
+    r=load(filenames(i));
+    
+end
 
-load("question1responses.mat");
-disp(responses)
-
-load("imagesresponses.mat")
-disp(responses)
 
 X = ["imagesresponses.mat","question1responses.mat", ]; %change when images get set
 
@@ -43,5 +42,5 @@ end
 if acceptHypothesis
     disp('People who perceive themselves to be more directly impacted by climate change and experience higher emotional distress because of climate change impacts are more likely to support mitigation efforts');
 else
-    disp('Reject the hypothesis: Not all conditions met');
+    disp('People who perceive themselves to be more directly impacted by climate change and experience higher emotional distress because of climate change impacts are not more likely to support mitigation efforts');
 end

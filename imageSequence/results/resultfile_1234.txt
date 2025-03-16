@@ -1,0 +1,26 @@
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+Ӓ	 images	 1	 Is there a toaster?	 01_targetAbsent-toaster.jpg	 n	 6.746594
+Ӓ	 images	 5	 Is there a blender?	 05_targetPresent-blender.jpg	 n	 3.504420
+Ӓ	 images	 2	 Is there a kettle?	 02_targetAbsent-kettle.jpg	 n	 4.113208
+Ӓ	 images	 6	 Is there an oven mitt?	 06_targetPresent-ovenmitt.jpg	 n	 1.332271
+Ӓ	 images	 7	 Is there a refrigerator?	 07_targetPresent-refrigerator.jpg	 n	 0.347777
+Ӓ	 images	 4	 Is there a surf board?	 04_targetAbsent-surfboard.jpg	 y	 0.461742
+Ӓ	 images	 3	 Is there a wine bottle?	 03_targetAbsent-winebottle.jpg	 n	 1.111735
+Ӓ	 images	 8	 Is there a bucket?	 08_targetPresent-bucket.jpg	 n	 0.664975
+subID	 imageCondition	 trial	 textItem	 imageFile	 response	 RT
+Ӓ	 images	 1	 Is there a toaster?	 01_targetAbsent-toaster.jpg	 n	 1.165897
+Ӓ	 images	 8	 Is there a bucket?	 08_targetPresent-bucket.jpg	 y	 1.454204
+Ӓ	 images	 5	 Is there a blender?	 05_targetPresent-blender.jpg	 n	 1.160277
+Ӓ	 images	 4	 Is there a surf board?	 04_targetAbsent-surfboard.jpg	 n	 0.857273
+Ӓ	 images	 7	 Is there a refrigerator?	 07_targetPresent-refrigerator.jpg	 n	 1.846056
