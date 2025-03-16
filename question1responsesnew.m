@@ -1,8 +1,7 @@
+subid = 1256;  % Participant ID
+num_participants = 1;  % Only one participant now
 
-subid= 1256; %change for each participant
-num_participants = 2;
-
-responses = zeros(num_participants, 1);  % Creating a column vector to store responses
+responses = zeros(num_participants, 1);  % Create a column vector to store responses
 
 % Setup for Psychtoolbox
 PsychDefaultSetup(2);
@@ -12,16 +11,17 @@ Screen('Preference', 'SkipSyncTests', 1);  % Skip sync tests for development (re
 textColor = [255 255 255];  % White text
 KbName('UnifyKeyNames');  % Standardize key names
 
-questionTexts = {'How directly do you feel climate change is impacting your life or livelihood? (1 = not at all, 10 = immediate threat):',
-   'If the opportunity arose, would you involve yourself with advocacy for climate change mitigation or adaptation? (1 = no I don’t really care, 10 = yes, absolutely)'};
+% Only include the first question
+questionTexts = {
+    'How directly do you feel climate change is impacting your life or livelihood? (1 = not at all, 10 = immediate threat):'
+};
 
 for i = 1:num_participants
     % Show the question and get the rating
-   
     questionText = questionTexts{i};
     disp(questionText)
     ratingText = 'Press keys 1-10 for your rating (1 = not at all, 10 = immediate threat)';
-
+    
     % Display the question and instructions on the screen
     DrawFormattedText(window1, questionText, 'center', rect(4)/3, textColor);
     DrawFormattedText(window1, ratingText, 'center', rect(4)/2, textColor);
@@ -45,37 +45,31 @@ for i = 1:num_participants
             end
 
             if ~isempty(keyPressed)
-                key = KbName(keyPressed(1));  % Get the key name
-                if any(strcmp(key, {'1!', '2@', '3#', '4$', '5%', '6^', '7&', '8*', '9(', '0)'}))  % Valid keys (1-10)
-                    rating = str2double(key);  % Convert key to numerical value
-                    keypr = key;
+                key = KbName(keyPressed(1));  % Get the key name (e.g., '1!', '2@', ...)
+                
+                % Extract the numeric part of the key press using regex
+                num_str = regexp(key, '\d', 'match');  % Find the digit(s) in the key name
+                if ~isempty(num_str)
+                    rating = str2double(num_str{1});  % Convert the first match to a number
                     if rating >= 1 && rating <= 10
                         break;  % Valid rating, exit loop
                     end
-                end 
-
+                end
             end
         end
     end
 
-    responses(i) = str2double(keypr(1)); 
-
+    responses(i) = rating;  % Store the valid rating
+    
     % Display a confirmation message for the response
-    DrawFormattedText(window1, ['You rated: ' keypr(1)], 'center', rect(4)/2 + 100, textColor);
-    responses(i) = rating; 
-
+    DrawFormattedText(window1, ['You rated: ' num2str(rating)], 'center', rect(4)/2 + 100, textColor);
     Screen('Flip', window1);  % Update the screen
     WaitSecs(1);  % Wait for 1 second before moving to the next participant
 end
 
 % Save the responses 
-
-    filename = ['results/question1TESTresponses' num2str(subid)] ;
+filename = ['results/question1responsesnew' num2str(subid)];
 save(filename, 'responses');
 
 % Close the screen
 Screen('CloseAll');
-
-%gotta figure out again how to store without NaN
-%remember how to call from command
-%I want to store responses to the first and second questions separately 
