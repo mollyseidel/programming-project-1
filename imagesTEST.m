@@ -27,7 +27,7 @@ question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 
     % Display the prompt below the image
     DrawFormattedText(window, ...
         'Rate the image from 1 to 10\n(1 = Do Not Care, 10 = Care A Lot)', ...
-        'center', rect(4) * 0.85, [0 0 0]);
+        'center', rect(4) * 0.85, [255 255 255]);
     
     % Flip the screen to show the image and text
     Screen('Flip', window);
