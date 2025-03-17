@@ -68,7 +68,7 @@ for i = 1:num_participants
 end
 
 % Save the responses 
-filename = ['results/question1responsesnew' num2str(subid)];
+filename = ['results1/question1responsesnew' num2str(subid)];
 save(filename, 'responses');
 
 % Close the screen
