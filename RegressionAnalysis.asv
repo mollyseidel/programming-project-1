@@ -1,15 +1,18 @@
 %making the regression
-filenames = dir(fullfile('results', '*.mat'));
+filenames = dir(fullfile('results1','results2','imageresults', '*.mat'));
 responsesall=[];
+
 for i = 1:length(filenames)
-    r=load(filenames(i));
-    
+    disp(filenames(i))
+    fn=fullfile('results1','results2','imageresults', filenames(i).name);
+    r=load(fn);
+    responsesall = [responsesall r];
 end
 
 
-X = ["imagesresponses.mat","question1responses.mat", ]; %change when images get set
+X = ["imageresults","results1", ]; %change when images get set
 
-Y = "question2responses.mat"; %Both X and Y need to be numerical arrays or matrices, not file names or strings.
+Y = "results2"; %Both X and Y need to be numerical arrays or matrices, not file names or strings.
 
 mdl = fitlm(X,Y);
 
@@ -44,3 +47,5 @@ if acceptHypothesis
 else
     disp('People who perceive themselves to be more directly impacted by climate change and experience higher emotional distress because of climate change impacts are not more likely to support mitigation efforts');
 end
+
+
