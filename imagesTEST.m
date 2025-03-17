@@ -1,12 +1,12 @@
-subid = 1256;  % Participant ID
+dd2subid = 1256;  % Participant ID
 num_participants = 30;  % Only one participant now
 
-responses = zeros(num_participants,1);  % Create a column vector to store responses
+responses = zeros(num_participants, 30);  % Create a column vector to store responses
 
 % Setup for Psychtoolbox
 PsychDefaultSetup(2);
 Screen('Preference', 'SkipSyncTests', 1);  % Skip sync tests for development (remove in production)
-[window, rect] = Screen('OpenWindow', 0, [0 0 0]);  % Create a black window on screen 0
+[window1, rect] = Screen('OpenWindow', 0, [0 0 0]);  % Create a black window on screen 0
 
 textColor = [255 255 255];  % White text
 KbName('UnifyKeyNames');  % Standardize key names
@@ -15,7 +15,7 @@ imageFolder = 'Images'; % folder path
 imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all png files in the folder
 
 for i = 1:num_participants
-question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 10 = you care):');
+   ratingText = 'Press keys 1-10 for your rating (1 = not at all, 10 = immediate threat)';
     imgPath = fullfile(imageFolder, imageFiles(i).name);
     img = imread(imgPath);
     imshow(img);
@@ -27,12 +27,11 @@ question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 
     % Display the prompt below the image
     DrawFormattedText(window, ...
         'Rate the image from 1 to 10\n(1 = Do Not Care, 10 = Care A Lot)', ...
-        'center', rect(4) * 0.85, [0 0 0]);
+        'center', screenY * 0.85, [0 0 0]);
     
     % Flip the screen to show the image and text
     Screen('Flip', window);
-      
-    rating = 0;
+   rating = 0;
    while rating < 1 || rating > 10
         [keyIsDown, ~, keyCode] = KbCheck;
         
@@ -66,13 +65,13 @@ question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 
     responses(i) = rating;  % Store the valid rating
     
     % Display a confirmation message for the response
-    DrawFormattedText(window, ['You rated: ' num2str(rating)], 'center', rect(4)/2 + 100, textColor);
-    Screen('Flip', window);  % Update the screen
+    DrawFormattedText(window1, ['You rated: ' num2str(rating)], 'center', rect(4)/2 + 100, textColor);
+    Screen('Flip', window1);  % Update the screen
     WaitSecs(1);  % Wait for 1 second before moving to the next participant
 end
 
 % Save the responses 
-filename = ['imageresults/response' num2str(subid)];
+filename = ['imageresponses/response' num2str(subid)];
 save(filename, 'responses');
 
 % Close the screen

@@ -1,35 +1,42 @@
-images = {'flood hurricane.png'};
-num_participants = 5;
-quesitonTexts = {'Climate Change'};
-textColor = [0 0 0];  % black text
-window1 = 0;
+dd2subid = 1256;  % Participant ID
+num_participants = 30;  % Only one participant now
+
+questionTexts = {
+    'Rate the image from 1 to 10 (1 = you do not care and 10 = you care)'
+};
+
+responses = zeros(num_participants, 30);  % Create a column vector to store responses
+
+% Setup for Psychtoolbox
+PsychDefaultSetup(2);
+Screen('Preference', 'SkipSyncTests', 1);  % Skip sync tests for development (remove in production)
+[window1, rect] = Screen('OpenWindow', 0, [0 0 0]);  % Create a black window on screen 0
+
+textColor = [255 255 255];  % White text
 KbName('UnifyKeyNames');  % Standardize key names
 
-store_responses = zeros (1, num_participants);
-[window, rect] = Screen ('OpenWindow', 0);
-
-impPath = images; % folder path
+imageFolder = 'Images'; % folder path
 imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all png files in the folder
-imgTexture = Screen ('MakeTexture', window, img);
-
-imgWidth = rect(3) * 0.6;
-imgHeight = imgHeight * (imgWidth / size (img, 2));
-
 
 for i = 1:num_participants
-    % Show the question and get the rating
-    questionText = questionTexts{i};
-    disp(questionText)
-    ratingText = 'Rate the image from 1 to 10 (1 = you do not care and 10 = you care?';
+   ratingText = 'Press keys 1-10 for your rating (1 = not at all, 10 = immediate threat)';
+    imgPath = fullfile(imageFolder, imageFiles(i).name);
+    img = imread(imgPath);
+    imshow(img);
+    imgTexture = Screen('MakeTexture', window, img);
     
-    % Display the question and instructions on the screen
-    DrawFormattedText(window, questionText, 'center', rect(4)/3, textColor);
-    DrawFormattedText(window, ratingText, 'center', rect(4)/2, textColor);
-    Screen('Flip', window);  % Update the screen
-
-    % Wait for the user to press a key corresponding to a rating (1-10)
-    rating = 0;
-    while rating < 1 || rating > 10
+    % Draw the image in the center of the screen
+    Screen('DrawTexture', window, imgTexture, [], []);
+    
+    % Display the prompt below the image
+    DrawFormattedText(window, ...
+        'Rate the image from 1 to 10\n(1 = Do Not Care, 10 = Care A Lot)', ...
+        'center', screenY * 0.85, [0 0 0]);
+    
+    % Flip the screen to show the image and text
+    Screen('Flip', window);
+   rating = 0;
+   while rating < 1 || rating > 10
         [keyIsDown, ~, keyCode] = KbCheck;
         
         if keyIsDown
@@ -43,33 +50,33 @@ for i = 1:num_participants
                 disp('ESCAPE key pressed. Exiting the experiment.');  % Print to console
                 return;  % Exit the function (ends the experiment)
             end
+
+            if ~isempty(keyPressed)
+                key = KbName(keyPressed(1));  % Get the key name (e.g., '1!', '2@', ...)
+                
+                % Extract the numeric part of the key press using regex
+                num_str = regexp(key, '\d', 'match');  % Find the digit(s) in the key name
+                if ~isempty(num_str)
+                    rating = str2double(num_str{1});  % Convert the first match to a number
+                    if rating >= 1 && rating <= 10
+                        break;  % Valid rating, exit loop
+                    end
+                end
+            end
         end
     end
+
+    responses(i) = rating;  % Store the valid rating
+    
+    % Display a confirmation message for the response
+    DrawFormattedText(window1, ['You rated: ' num2str(rating)], 'center', rect(4)/2 + 100, textColor);
+    Screen('Flip', window1);  % Update the screen
+    WaitSecs(1);  % Wait for 1 second before moving to the next participant
 end
-for j = 1:10
-    if keyCode (KbName (num2str(j)))
-        rating = j;
-        disp (['Rating:', num2str(rating)]);
-        break;
-    end
-end
-            
-                  % Convert the key to a number and check if it's within the valid range
-                  % Convert the string to a number
-                    if rating >= 1 && rating <= 10
-                        disp(['Selected: ', num2str(rating), '. Press ENTER to confirm'])
-                        while true
-                            [~, enterKeyCode] = KbWait([], 2);
-                            if enterKeyCode(KbName('RETURN'))
-                                store_responses (i) = rating;
-                                break;
-                            end
-                            WaitSecs(0.1); % Short pause
-                        end
-                    end
-WaitSecs(0.5);
 
+% Save the responses 
+filename = ['imageresponses/response' num2str(subid)];
+save(filename, 'responses');
 
-save('imageresponses.mat', 'store_responses');
-
-sca;
+% Close the screen
+Screen('CloseAll');
