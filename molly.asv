@@ -1,0 +1,73 @@
+images = {'flood hurricane.png'};
+num_participants = 5;
+quesitonTexts = {'Climate Change'};
+textColor = [0 0 0];  % black text
+window1 = 0;
+KbName('UnifyKeyNames');  % Standardize key names
+
+store_responses = zeros (1, num_participants);
+[window, rect] = Screen ('OpenWindow', 0);
+
+impPath = images; % folder path
+imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all png files in the folder
+im
+
+
+
+for i = 1:num_participants
+    % Show the question and get the rating
+    questionText = questionTexts{i};
+    disp(questionText)
+    ratingText = 'Rate the image from 1 to 10 (1 = you do not care and 10 = you care?';
+    
+    % Display the question and instructions on the screen
+    DrawFormattedText(window, questionText, 'center', rect(4)/3, textColor);
+    DrawFormattedText(window, ratingText, 'center', rect(4)/2, textColor);
+    Screen('Flip', window);  % Update the screen
+
+    % Wait for the user to press a key corresponding to a rating (1-10)
+    rating = 0;
+    while rating < 1 || rating > 10
+        [keyIsDown, ~, keyCode] = KbCheck;
+        
+        if keyIsDown
+            keyPressed = find(keyCode);
+            
+            % Check for the ESCAPE key to quit the experiment
+            if keyCode(KbName('ESCAPE')) == 1
+                % Close the screen and exit the function
+                Screen('CloseAll');
+                sca;  % Clear the screen and all Psychtoolbox windows
+                disp('ESCAPE key pressed. Exiting the experiment.');  % Print to console
+                return;  % Exit the function (ends the experiment)
+            end
+        end
+    end
+end
+for j = 1:10
+    if keyCode (KbName (num2str(j)))
+        rating = j;
+        disp (['Rating:', num2str(rating)]);
+        break;
+    end
+end
+            
+                  % Convert the key to a number and check if it's within the valid range
+                  % Convert the string to a number
+                    if rating >= 1 && rating <= 10
+                        disp(['Selected: ', num2str(rating), '. Press ENTER to confirm'])
+                        while true
+                            [~, enterKeyCode] = KbWait([], 2);
+                            if enterKeyCode(KbName('RETURN'))
+                                store_responses (i) = rating;
+                                break;
+                            end
+                            WaitSecs(0.1); % Short pause
+                        end
+                    end
+WaitSecs(0.5);
+
+
+save('imageresponses.mat', 'store_responses');
+
+sca;
