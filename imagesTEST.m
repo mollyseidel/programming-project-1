@@ -1,7 +1,7 @@
 subid = 1256;  % Participant ID
 num_participants = 30;  % Only one participant now
 
-responses = zeros(num_participants);  % Create a column vector to store responses
+responses = zeros(num_participants,1);  % Create a column vector to store responses
 
 % Setup for Psychtoolbox
 PsychDefaultSetup(2);
