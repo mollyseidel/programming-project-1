@@ -1,6 +1,7 @@
 %making the regression
 filenames = dir(fullfile('results/', '*.mat'));
 responsesall=zeros(2,2);
+responseallimages=zeros(2,30);
 
 for i = 1:length(filenames)
     disp(filenames(i))
@@ -10,22 +11,26 @@ for i = 1:length(filenames)
     responsesall(i, :) = cell2mat(C); % [responsesall r];
 end
 
-%Z = zscore(X, flag);
+for i = 1:length(filenames)
+    disp(filenames(i))
+    fn=fullfile('imageresults/', filenames(i).name);
+    r=load(fn);
+    C= struct2cell(r);
+    responsesallimages(i, :) = cell2mat(C); % [responsesallimages r];
+end
+
+
 column1 = responsesall(:, 1);
 column2 = responsesall(:, 2);
 
 
-%z-scoring
-
-
-%X = ["imageresults","results1", ]; %change when images get set
-
-%Y = "results2"; %Both X and Y need to be numerical arrays or matrices, not file names or strings.
-
 mdl = fitlm(column1,column2);
+
+mdl1 = fitlm(responseallimages,column2);
 
 disp('Linear regression model:');
 disp(mdl)
+disp(mdl1)
 
 % Extracting coefficients, p-values, and R-squared value
 coefficients = mdl.Coefficients.Estimate;  % Should be 3 Coefficients for the 'predictors'

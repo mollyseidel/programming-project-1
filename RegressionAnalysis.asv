@@ -1,20 +1,33 @@
 %making the regression
-filenames = dir(fullfile('results1','results2','imageresults', '*.mat'));
-responsesall=[];
+filenames = dir(fullfile('results/', '*.mat'));
+responsesall=zeros(2,2);
+responseallimages=zeros(2,30);
 
 for i = 1:length(filenames)
     disp(filenames(i))
-    fn=fullfile('results1','results2','imageresults', filenames(i).name);
+    fn=fullfile('results/', filenames(i).name);
     r=load(fn);
-    responsesall = [responsesall r];
+    C= struct2cell(r);
+    responsesall(i, :) = cell2mat(C); % [responsesall r];
+end
+
+for i = 1:length(filenames)
+    disp(filenames(i))
+    fn=fullfile('imageresults/', filenames(i).name);
+    r=load(fn);
+    C= struct2cell(r);
+    responsesallimages(i, :) = cell2mat(C); % [responsesallimages r];
 end
 
 
-X = ["imageresults","results1", ]; %change when images get set
+column1 = responsesall(:, 1);
+column2 = responsesall(:, 2);
 
-Y = "results2"; %Both X and Y need to be numerical arrays or matrices, not file names or strings.
 
-mdl = fitlm(X,Y);
+mdl = fitlm(column1,column2);
+
+
+mdl = fitlm(responseallimages,responseall);
 
 disp('Linear regression model:');
 disp(mdl)

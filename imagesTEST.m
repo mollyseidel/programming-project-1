@@ -1,6 +1,5 @@
-subid = 1256;  % Participant ID
-num_participants = 30;  % Only one participant now
-
+subid = 1234;  % Participant IDnum_participants = 30;  % Only one participant now, num participant is actually the number of pictures
+num_participants = 30;
 responses = zeros(num_participants,1);  % Create a column vector to store responses
 
 % Setup for Psychtoolbox
@@ -15,7 +14,7 @@ imageFolder = 'Images'; % folder path
 imageFiles = dir(fullfile(imageFolder, '*.png')); % Get all png files in the folder
 
 for i = 1:num_participants
-question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 10 = you care):');
+question_prompt = sprintf('Rate the image from 1 to 9 (1 = you do not care and 9 = you care):');
     imgPath = fullfile(imageFolder, imageFiles(i).name);
     img = imread(imgPath);
     imshow(img);
@@ -26,14 +25,14 @@ question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 
     
     % Display the prompt below the image
     DrawFormattedText(window, ...
-        'Rate the image from 1 to 10\n(1 = Do Not Care, 10 = Care A Lot)', ...
+        'Rate the image from 1 to 9\n(1 = Do Not Care, 9 = Care A Lot)', ...
         'center', rect(4) * 0.85, [255 255 255]);
     
     % Flip the screen to show the image and text
     Screen('Flip', window);
 
     rating = 0;
-   while rating < 1 || rating > 10
+   while rating < 1 || rating > 9
         [keyIsDown, ~, keyCode] = KbCheck;
         
         if keyIsDown
@@ -54,7 +53,7 @@ question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 
                 num_str = regexp(key, '\d', 'match');  % Find the digit(s) in the key name
                 if ~isempty(num_str)
                     rating = str2double(num_str{1});  % Convert the first match to a number
-                    if rating >= 1 && rating <= 10
+                    if rating >= 1 && rating <= 9
                         break;  % Valid rating, exit loop
                     end
                 end
@@ -71,8 +70,12 @@ question_prompt = sprintf('Rate the image from 1 to 10 (1 = you do not care and 
 end
 
 
+
 % Save the responses 
-filename = ['imageresults/response' num2str(subid)];
+filename = ['imageresults/' num2str(subid)];
+
+responses = (responses - mean(responses)) / std(responses);
+
 save(filename, 'responses');
 
 % Close the screen
