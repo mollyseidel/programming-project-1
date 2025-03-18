@@ -1,5 +1,5 @@
 
-subid= 1112; %change for each participant
+subid= 0002; %change for each participant
 num_participants = 2;
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses
@@ -20,7 +20,7 @@ for i = 1:num_participants
    
     questionText = questionTexts{i};
     disp(questionText)
-    ratingText = 'Press keys 1-10 for your rating (1 = not at all, 10 = immediate threat)';
+    ratingText = 'Press keys 1-10 for your rating (1 = not at all/no, 10 = immediate threat/yes)';
 
     % Display the question and instructions on the screen
     DrawFormattedText(window1, questionText, 'center', rect(4)/3, textColor);

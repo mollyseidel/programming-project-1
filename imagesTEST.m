@@ -1,4 +1,4 @@
-subid = 1234;  % Participant IDnum_participants = 30;  % Only one participant now, num participant is actually the number of pictures
+subid = 0002;  % Participant IDnum_participants = 30;  % Only one participant now, num participant is actually the number of pictures
 num_participants = 30;
 responses = zeros(num_participants,1);  % Create a column vector to store responses
 
