@@ -1,12 +1,12 @@
 
-subid= 0008; %change for each participant
+subid= 0010; %change for each participant
 num_participants = 2;
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses
 
 % Setup for Psychtoolbox
 PsychDefaultSetup(2);
-Screen('Preference', 'SkipSyncTests', 1);  % Skip sync tests for development (remove in production)
+Screen('Preference', 'SkipSyncTests', 1);  % Skip sync tests for development (remove in production) - change to 0?
 [window1, rect] = Screen('OpenWindow', 0, [0 0 0]);  % Create a black window on screen 0
 
 textColor = [255 255 255];  % White text
