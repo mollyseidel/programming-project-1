@@ -16,7 +16,7 @@ for i = 1:length(filenames)
     fn=fullfile('imageresults/', filenames(i).name);
     r=load(fn);
     C= struct2cell(r);
-    responsesallimages(i, :) = cell2mat(C); % [responsesallimages r];
+    responseallimages(i, :) = cell2mat(C); % [responsesallimages r];
 end
 
 
@@ -81,7 +81,7 @@ end
 
 % Check if R-squared is above 0.70
 if rSquared <= 0.70
-    acceptHypothesis2 = false;  % Reject if R-squared is <= 0.70
+    acceptHypothesis2 = false;  % Reject if R-squared is <= 0.70 
 end
 
 % Final decision
