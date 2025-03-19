@@ -20,7 +20,7 @@ for i = 1:num_participants
    
     questionText = questionTexts{i};
     disp(questionText)
-    ratingText = 'Press keys 1-9 for your rating (1 = not at all/no, 9 = immediate threat/yes)';
+    ratingText = 'Press keys 1-9 for your rating (1 = not at all/no, 10 = immediate threat/yes)';
 
     % Display the question and instructions on the screen
     DrawFormattedText(window1, questionText, 'center', rect(4)/3, textColor);

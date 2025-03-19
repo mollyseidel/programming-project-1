@@ -51,7 +51,7 @@ end
 disp(pValues)
 % Check if R-squared is above 0.70
 if rSquared <= 0.70
-    acceptHypothesis1 = false;  % Reject if R-squared is <= 0.70
+    acceptHylana pothesis1 = false;  % Reject if R-squared is <= 0.70
 end
 disp(rSquared)
 % Final decision
