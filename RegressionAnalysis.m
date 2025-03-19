@@ -18,7 +18,9 @@ for i = 1:length(filenames)
     C= struct2cell(r);
     responseallimages(i, :) = cell2mat(C); % [responsesallimages r];
 end
-
+%disp(responseallimages)
+averageresponses = mean(responseallimages,2);
+%disp(averageresponses)
 
 column1 = responsesall(:, 1);
 column2 = responsesall(:, 2);
@@ -26,7 +28,9 @@ column2 = responsesall(:, 2);
 
 mdl = fitlm(column1,column2);
 
-mdl1 = fitlm(responseallimages,column2);
+
+mdl1 = fitlm(averageresponses,column2);
+%plot(averageresponses,column2)
 
 disp('Linear regression model:');
 disp(mdl);

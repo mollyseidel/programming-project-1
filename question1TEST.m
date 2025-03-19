@@ -1,5 +1,5 @@
 
-subid= 0010; %change for each participant
+subid= 0011; %change for each participant
 num_participants = 2;
 
 responses = zeros(num_participants, 1);  % Creating a column vector to store responses

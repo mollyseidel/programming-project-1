@@ -1,4 +1,4 @@
-subid = 0010;  % Participant IDnum_participants = 30;  % Only one participant now, num participant is actually the number of pictures
+subid = 0011;  % Participant IDnum_participants = 30;  % Only one participant now, num participant is actually the number of pictures
 num_participants = 30;
 responses = zeros(num_participants,1);  % Create a column vector to store responses
 
@@ -74,9 +74,11 @@ end
 % Save the responses 
 filename = ['imageresults/' num2str(subid)];
 
+%z-scoring
 responses = (responses - mean(responses)) / std(responses);
 
 save(filename, 'responses');
+%averageresponses = mean(responses)
 
 % Close the screen
 Screen('CloseAll');
