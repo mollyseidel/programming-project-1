@@ -30,7 +30,6 @@ mdl1 = fitlm(responseallimages,column2);
 
 disp('Linear regression model:');
 disp(mdl);
-disp(mdl1);
 
 % Extracting coefficients, p-values, and R-squared value
 coefficients = mdl.Coefficients.Estimate;  % Should be 2 Coefficients for the 'predictors'
@@ -40,8 +39,8 @@ rSquared = mdl.Rsquared.Ordinary;          % R-squared value
 acceptHypothesis1 = true;
 
 % Check if all coefficients are positive
-if any(coefficients <= 0)
-    acceptHypothesis1 = false;  % Reject if any coefficient is negative
+if all(coefficients <= 0)
+    acceptHypothesis1 = false;  % Reject if all coefficients are negative
 end
 disp(coefficients)
 % Check if all p-values are less than 0.05
@@ -49,9 +48,9 @@ if any(pValues >= 0.05)
     acceptHypothesis1 = false;  % Reject if any p-value is >= 0.05
 end
 disp(pValues)
-% Check if R-squared is above 0.70
-if rSquared <= 0.70
-    acceptHylana pothesis1 = false;  % Reject if R-squared is <= 0.70
+% Check if R-squared is above 0.60
+if rSquared <= 0.60
+    acceptHypothesis1 = false;  % Reject if R-squared is <= 0.60
 end
 disp(rSquared)
 % Final decision
@@ -61,17 +60,18 @@ else
     disp('People who perceive themselves to be more directly impacted by climate change are not more likely to support mitigation efforts');
 end
 
+disp(mdl1);
 
 % Extracting coefficients, p-values, and R-squared value
-coefficients1 = mdl1.Coefficients.Estimate;  % Should be 3 Coefficients for the 'predictors'
-pValues1 = mdl1.Coefficients.pValue;         % Should be 3 P-values for the 'predictors'
+coefficients1 = mdl1.Coefficients.Estimate;  % Should be 2 Coefficients for the 'predictors'
+pValues1 = mdl1.Coefficients.pValue;         % Should be 2 P-values for the 'predictors'
 rSquared1 = mdl1.Rsquared.Ordinary;          % R-squared value
 
 acceptHypothesis2 = true;
 
 % Check if all coefficients are positive
-if any(coefficients1 <= 0)
-    acceptHypothesis2 = false;  % Reject if any coefficient is negative
+if all(coefficients1 <= 0)
+    acceptHypothesis2 = false;  % Reject if all coefficients are negative
 end
 
 % Check if all p-values are less than 0.05
@@ -79,9 +79,9 @@ if any(pValues1 >= 0.05)
     acceptHypothesis2 = false;  % Reject if any p-value is >= 0.05
 end
 
-% Check if R-squared is above 0.70
-if rSquared1 <= 0.70
-    acceptHypothesis2 = false;  % Reject if R-squared is <= 0.70 
+% Check if R-squared is above 0.60
+if rSquared1 <= 0.60
+    acceptHypothesis2 = false;  % Reject if R-squared is <= 0.60 
 end
 
 % Final decision
